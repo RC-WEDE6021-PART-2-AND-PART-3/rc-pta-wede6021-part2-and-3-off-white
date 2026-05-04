@@ -1,0 +1,5 @@
+Jacket,Winter jacket,350,jacket1.jpg,1
+Jacket,Sports jacket,500,shoes1.jpg,1
+Shirt,Designer shirt,1200,shirt1.jpg,1
+Slim fit,Slim fit jacket,400,jeans1.jpg,1
+Hoodie,Comfort hoodie,300,hoodie1.jpg,1
