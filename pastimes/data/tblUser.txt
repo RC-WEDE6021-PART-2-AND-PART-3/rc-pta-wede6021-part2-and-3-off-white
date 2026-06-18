@@ -1,0 +1,5 @@
+John Doe,john@email.com,johndoe,hashedpassword1
+Jane Smith,jane@email.com,janesmith,hashedpassword2
+Mike Ross,mike@email.com,mikeross,hashedpassword3
+Sarah Lee,sarah@email.com,sarahlee,hashedpassword4
+David King,david@email.com,davidking,hashedpassword5

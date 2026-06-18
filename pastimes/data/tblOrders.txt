@@ -1,0 +1,5 @@
+1,550,Pending
+2,1200,Shipped
+1,300,Delivered
+3,800,Pending
+2,450,Cancelled
