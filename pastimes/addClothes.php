@@ -13,8 +13,9 @@ $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $title = $_POST['title'];
-    $description = $_POST['description'];
-    $price = $_POST['price'];
+$brand = $_POST['brand'];
+$description = $_POST['description'];
+$price = $_POST['price'];
     $user_id = $_SESSION['user_id'];
 
     // image upload
@@ -26,18 +27,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // BASIC SECURITY IMPROVEMENT (escape input)
         $title = mysqli_real_escape_string($conn, $title);
         $description = mysqli_real_escape_string($conn, $description);
+        $brand = mysqli_real_escape_string($conn, $brand);
 
-        $sql = "INSERT INTO tblClothes (title, description, price, image, user_id)
-                VALUES ('$title','$description','$price','$imageName','$user_id')";
+       $sql = "INSERT INTO tblClothes
+(title, description, brand, price, image, user_id)
+VALUES
+('$title', '$description', '$brand', '$price', '$imageName', '$user_id')";
 
-        if ($conn->query($sql)) {
-            $message = "✅ Item added successfully!";
-        } else {
-            $message = "❌ Database error: " . $conn->error;
-        }
-
-    } else {
-        $message = "❌ Image upload failed.";
+if(mysqli_query($conn, $sql))
+{
+    $message = "✅ Clothing item submitted successfully.";
+}
+else
+{
+    $message = "❌ Database error: " . mysqli_error($conn);
+}
     }
 }
 ?>
@@ -60,13 +64,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <form method="POST" enctype="multipart/form-data">
 
-        <input type="text" name="title" placeholder="Item Title" required><br><br>
+        <input type="text" name="title" placeholder="Title" required>
 
-        <textarea name="description" placeholder="Item Description" required></textarea><br><br>
+<input type="text" name="brand" placeholder="Brand" required>
 
-        <input type="number" name="price" placeholder="Price (R)" required><br><br>
+<textarea name="description" placeholder="Description"></textarea>
 
-        <input type="file" name="image" required><br><br>
+<input type="number" name="price" placeholder="Price" required>
+
+<input type="file" name="image" required>
 
         <button type="submit">Upload Item</button>
 

@@ -32,14 +32,33 @@ if (!isset($_SESSION['cart']) || empty($_SESSION['cart'])) {
 
     $order_id = $conn->insert_id;
 
-    // insert order items
-    foreach ($_SESSION['cart'] as $id) {
+    
+   // insert order items
+foreach ($_SESSION['cart'] as $id => $quantity) {
+
+    $check = $conn->query("
+        SELECT * FROM tblOrderItems
+        WHERE order_id='$order_id'
+        AND product_id='$id'
+    ");
+
+    if ($check->num_rows > 0) {
+
         $conn->query("
-            INSERT INTO tblOrderItems (order_id, product_id)
-            VALUES ($order_id, $id)
+            UPDATE tblOrderItems
+            SET quantity = quantity + $quantity
+            WHERE order_id='$order_id'
+            AND product_id='$id'
+        ");
+
+    } else {
+
+        $conn->query("
+            INSERT INTO tblOrderItems(order_id, product_id, quantity)
+            VALUES('$order_id', '$id', '$quantity')
         ");
     }
-
+}
     // clear cart
     unset($_SESSION['cart']);
 

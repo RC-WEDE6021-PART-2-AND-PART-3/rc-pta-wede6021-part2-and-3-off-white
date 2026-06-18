@@ -15,17 +15,27 @@ if (!isset($_SESSION['cart'])) {
 
 // ADD ITEM
 if (isset($_GET['add'])) {
-    $_SESSION['cart'][] = $_GET['add'];
+
+    $id = $_GET['add'];
+
+    if (isset($_SESSION['cart'][$id])) {
+        $_SESSION['cart'][$id]++;
+    } else {
+        $_SESSION['cart'][$id] = 1;
+    }
 }
 
 // REMOVE ITEM
 if (isset($_GET['remove'])) {
-    $key = array_search($_GET['remove'], $_SESSION['cart']);
-    if ($key !== false) {
-        unset($_SESSION['cart'][$key]);
+
+    $id = $_GET['remove'];
+
+    if (isset($_SESSION['cart'][$id])) {
+        unset($_SESSION['cart'][$id]);
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -49,27 +59,37 @@ $total = 0;
 
 if (!empty($_SESSION['cart'])) {
 
-    foreach ($_SESSION['cart'] as $id) {
+    foreach ($_SESSION['cart'] as $id => $quantity) {
 
-        $result = $conn->query("SELECT * FROM tblClothes WHERE id=$id");
-        $row = $result->fetch_assoc();
+  $result = $conn->query("SELECT * FROM tblClothes WHERE id=".(int)$id);
+
+if (!$result || $result->num_rows == 0) {
+    continue;
+}
+
+$row = $result->fetch_assoc();
+
+if (!$row) {
+    continue;
+}
 
         echo "
         <div class='card'>
             <img src='images/".$row['image']."'>
             <h3>".$row['title']."</h3>
             <p>R ".$row['price']."</p>
+            <p>Quantity: ".$quantity."</p>
 
             <a href='cart.php?remove=".$row['id']."'>Remove</a>
         </div>
         ";
-
-        $total += $row['price'];
+        $total += ($row['price'] * $quantity);
     }
 
     echo "<h3>Total: R ".$total."</h3>";
     echo "<a href='checkout.php'>Proceed to Checkout</a>";
 
+    echo "<div><a href='clothes.php' class='continue-btn'>Continue Shopping</a></div>";
 } else {
     echo "<p>🛒 Your cart is empty</p>";
     echo "<a href='clothes.php'>Go Shopping</a>";

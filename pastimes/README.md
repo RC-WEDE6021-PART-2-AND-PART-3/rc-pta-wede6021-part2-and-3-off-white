@@ -1,107 +1,236 @@
-# Second-Hand Clothing Web Application
+# Pastimes - Second-Hand Clothing Marketplace
 
-##  Overview
-- Pastimes is a full-stack web-based e-commerce application that enables users to buy and sell second-hand clothing online. The system demonstrates the use of PHP, MySQL, and session-based authentication to simulate a real-world online marketplace. The platform supports user registration, admin verification, product management, shopping cart functionality, and order tracking.
+## Project Overview
 
----
+Pastimes is a web-based marketplace application that allows users to buy and sell second-hand branded clothing through a secure and user-friendly platform.
 
-## System Objectives
-- Provide a secure platform for second-hand clothing trading
-- Implement role-based access control (User / Admin)
-- Demonstrate CRUD operations using PHP and MySQL
-- Apply session management for authentication
-- Enable interactive user experience through search, filtering, and cart functionality
+The system was developed using PHP, MySQL, HTML, CSS, JavaScript, and XAMPP. It supports customer registration, administrator verification, clothing management, shopping cart functionality, checkout processing, and order tracking.
 
----
 
-## Features
 
-### User Features
-- Secure user registration with password hashing (`password_hash`)
-- Login system with session authentication
-- Browse and search clothing items using filters and live search (AJAX)
-- Add/remove items from shopping cart (session-based)
-- Checkout system that generates orders
-- View order history and status tracking
+### Group Members
+
+ST10450908      Fumani Thatho Yibgwane Baloyi 
+ST10157844      Oladele Oladayo William       
 
 ---
 
-### Seller Features
-- Upload clothing items with:
-  - Title
-  - Description
-  - Price
-  - Image upload
-- Manage listed products
+ System Features
+
+## Customer Features
+
+* User registration
+* Secure login using hashed passwords
+* Account verification by administrator
+* Browse available clothing items
+* Search clothing items by title
+* Filter clothing items by price
+* View detailed product information
+* Add products to shopping cart
+* Remove products from shopping cart
+* Continue shopping functionality
+* Checkout functionality
+* View order history
+* View order status
+
+
+
+## Seller Features
+
+* Submit clothing items for sale
+* Upload clothing images
+* Add clothing description
+* Add clothing brand
+* Add pricing information
+* Manage personal clothing listings
+
+
+## Administrator Features
+
+* Administrator login
+* Verify new customer registrations
+* Manage customers
+* Add clothing items
+* Update clothing items
+* Delete clothing items
+* Approve seller requests
+* Manage orders
+* Communicate with buyers and sellers
 
 ---
 
-### Admin Features
-- Secure admin login system
-- Verify newly registered users before platform access
-- Manage user accounts via dashboard
-- Control system access and maintain platform integrity
+# Technologies Used
+
+
+* CSS
+* PHP 8
+* MySQL
+* phpMyAdmin
+* XAMPP
+
+
+# Database Structure
+
+## tblUser
+
+Stores customer and seller information.
+
+Fields:
+
+* id
+* name
+* email
+* username
+* password
+* isVerified
+
+
+
+## tblAdmin
+
+Stores administrator credentials.
+
+Fields:
+
+* id
+* username
+* password
+
+
+## tblClothes
+
+Stores clothing listings.
+
+Fields:
+
+* id
+* title
+* description
+* brand
+* price
+* image
+* user_id
+
+
+
+## tblOrders
+
+Stores order information.
+
+Fields:
+
+* id
+* user_id
+* total
+* status
+
+
+
+## tblOrderItems
+
+Stores products associated with each order.
+
+Fields:
+
+* id
+* order_id
+* product_id
+
+
+
+## tblMessages
+
+Stores communication between administrators, buyers, and sellers.
+
+Fields:
+
+* id
+* sender
+* receiver
+* message
+* date_sent
+
+
+
+ Installation Instructions
+
+## Step 1: Install XAMPP
+
+Download and install XAMPP.
 
 ---
 
-## System Architecture
+## Step 2: Start Services
 
-### Backend
-- PHP (Server-side scripting)
-- MySQL (Relational database management)
-- Session handling for authentication and user state
+Open XAMPP Control Panel.
 
-### Frontend
-- HTML5 (Structure)
-- CSS3 (Styling and layout)
-- JavaScript (AJAX live search functionality)
+Start:
+
+* Apache
+* MySQL
 
 ---
 
-## Database Functionality
-The system uses a relational database structure with the following key operations:
-- User management (tblUser)
-- Product management (tblClothes)
-- Order processing (tblOrders, tblOrderItems)
-- Admin verification system
+## Step 3: Copy Project
 
-All CRUD operations are performed using PHP and MySQL queries.
+Copy the project folder into:
+
+C:\xampp\htdocs\pastimes
 
 ---
 
-## Security Implementation
-- Password hashing using `password_hash()`
-- Session-based login authentication
-- Admin-only access control for sensitive functions
-- Input sanitization using `mysqli_real_escape_string()`
+## Step 4: Create Database
+
+Open:
+
+http://localhost/phpmyadmin
+
+Create a database called:
+
+ClothingStore
 
 ---
 
-## How to Run the Project
+## Step 5: Import Database
 
-1. Install XAMPP (Apache + MySQL)
-2. Copy project folder into `htdocs`
-3. Start Apache and MySQL services
-4. Open phpMyAdmin and import database
-5. Run project using:
-http://localhost/pastimes
+Select ClothingStore.
+
+Import:
+
+myClothingStore.sql
+
+---
+
+## Step 6: Run Application
+
+Open browser and navigate to:
+
+http://localhost/pastimes/login.php
+
+---
+
+# Default Administrator Account
+
+Username:admin
+
+Password:admin123
 
 
 ---
 
-##  Development Environment
-- PHP 8+
-- MySQL / phpMyAdmin
-- XAMPP Server
-- Visual Studio Code
+
+
+# Future Improvements
+
+* Online payment gateway integration
+* Advanced search and filtering
+* Wishlist functionality
+* Product ratings and reviews
+* Email notifications
+* Mobile application integration
 
 ---
 
-##  Conclusion
-- The Pastimes web application successfully demonstrates the implementation of a full-stack e-commerce system using PHP and MySQL. It incorporates essential web development concepts such as authentication, session management, CRUD operations, and dynamic user interaction, making it a complete and functional online marketplace prototype.
+# Conclusion
 
----
-
-##  Authors
-- Oladayo william oladele - ST10157844
-- FUMANI THATHO YIBGWANE BALOYI - ST10450908
+Pastimes provides a complete second-hand clothing marketplace that enables secure buying and selling of branded clothing items. The application demonstrates the practical implementation of PHP programming, MySQL database integration, session management, CRUD functionality, user authentication, and e-commerce principles.

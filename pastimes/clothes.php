@@ -75,6 +75,7 @@ $result = $conn->query($sql);
                     <img src="images/<?php echo $row['image']; ?>">
 
                     <h3><?php echo $row['title']; ?></h3>
+                    <p><strong>Brand:</strong> <?php echo $row['brand']; ?></p>
 
                     <p>R <?php echo number_format($row['price'], 2); ?></p>
 
